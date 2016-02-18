@@ -34,7 +34,7 @@ class Modules_SlaveDnsManager_Rndc
 
     private function _call(Modules_SlaveDnsManager_Slave $slave, $arguments, $verbose = false)
     {
-        $arguments = "-c \"{$slave->getConfigPath()}\" {$arguments} 2>&1";
+        $arguments = "-c \"{$slave->getConfigPath()}\" -s {$slave->getIP()} {$arguments} 2>&1";
         if (pm_ProductInfo::isWindows()) {
             $command = '"' . PRODUCT_ROOT . '\dns\bin\rndc.exe"';
         } else {
